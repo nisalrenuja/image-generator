@@ -24,6 +24,27 @@ const App = () => (
         <Route path="/create-post" element={<CreatePost />} />
       </Routes>
     </main>
+    <footer className="w-full flex justify-center items-center bg-black sm:px-8 px-4 py-4 border-b border-b-[#e6ebf4]">
+      <div className="flex justify-between items-center">
+        <div className="flex gap-5">
+          <p className="text-[#ffffff] text-sm">
+            Made with{" "}
+            <span role="img" aria-label="heart">
+              ❤️
+            </span>{" "}
+            by{" "}
+            <a
+              href="https://github.com/nisalrenuja"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#ffffff] font-medium"
+            >
+              Nisal Renuja
+            </a>
+          </p>
+        </div>
+      </div>
+    </footer>
   </BrowserRouter>
 );
 
