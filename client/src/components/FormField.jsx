@@ -23,6 +23,7 @@ const FormField = ({
           <button
             type="button"
             className="font-medium font-sm bg-[#ECECF1] py-1 px-2 rounded-[5px] text-black"
+            onClick={handleSurpriseMe}
           >
             Surprise Me
           </button>
