@@ -2,8 +2,8 @@ import express from "express";
 import * as dotenv from "dotenv";
 import cors from "cors";
 import connectDB from "../server/mongodb/connect.js";
-import postRoutes from "../server/routes/postRoutes.js";
-import dalleRoutes from "../server/routes/dalleRoutes.js";
+import postRoutes from "./routes/postRoutes.js";
+import dalleRoutes from "./routes/dalleRoutes.js";
 
 dotenv.config();
 
@@ -14,8 +14,9 @@ app.use(
     limit: "50mb",
   })
 );
-app.use("api/v1/post", postRoutes);
-app.use("api/v1/dalle", dalleRoutes);
+
+app.use("/api/v1/posts", postRoutes);
+app.use("/api/v1/dalle", dalleRoutes);
 app.get("/", (req, res) => {
   res.send("Server is ready");
 });

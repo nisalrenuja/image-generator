@@ -1,7 +1,6 @@
 import express from "express";
 import * as dotenv from "dotenv";
 import { Configuration, OpenAIApi } from "openai";
-import Post from "../mongodb/models/post.js";
 
 dotenv.config();
 const router = express.Router();
@@ -10,8 +9,26 @@ const configuration = new Configuration({
 });
 
 const openai = new OpenAIApi(configuration);
-router.route("/").get(async (req, res) => {
-  res.send("Hello From Dall-E!");
+router.route("/").get((req, res) => {
+  res.status(200).json({ message: "Hello from POSTS routes" });
+});
+router.route("/").post(async (req, res) => {
+  try {
+    const { prompt } = req.body;
+
+    const aiResponse = await openai.createImage({
+      prompt: prompt,
+      n: 1,
+      size: "1024x1024",
+      response_format: "b64_json",
+    });
+    const image = aiResponse.data.data[0].b64_json;
+    console.log(image);
+    res.status(200).json({ photo: image });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Server Error" });
+  }
 });
 
 export default router;
